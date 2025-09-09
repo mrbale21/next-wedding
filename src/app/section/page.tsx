@@ -39,7 +39,7 @@ export default function SectionPage() {
 
       {/* SectionClient yang aman memanggil useSearchParams() */}
       <Suspense fallback={<div>Loading...</div>}>
-        <SectionClient />
+        <SectionClient onOpen={() => setIsUnlocked(true)} />
       </Suspense>
 
       <FirstPage triggerConfetti={isUnlocked} />
