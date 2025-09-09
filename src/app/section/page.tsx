@@ -10,9 +10,13 @@ import Gift from "./gits";
 import Footer from "./footer";
 import { FaMusic, FaPause } from "react-icons/fa";
 
-export default function SectionPage() {
-  // Untuk sementara, gunakan guestName static
-  const guestName = "Tamu Undangan";
+interface SectionPageProps {
+  searchParams: { to?: string };
+}
+
+export default function SectionPage({ searchParams }: SectionPageProps) {
+  const rawTo = searchParams?.to;
+  const guestName = rawTo ? decodeURIComponent(rawTo) : "Tamu Undangan";
 
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
