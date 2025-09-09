@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { IoMdMailOpen } from "react-icons/io";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import type { Options } from "canvas-confetti";
 
 interface IntroPageProps {
   onOpen: () => void;
@@ -31,7 +32,7 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
 
   const handleOpen = () => {
     import("canvas-confetti").then((confetti) => {
-      const fireConfetti = (particleRatio: number, opts: any) => {
+      const fireConfetti = (particleRatio: number, opts: Options) => {
         confetti.default({
           ...opts,
           particleCount: Math.floor(200 * particleRatio),
