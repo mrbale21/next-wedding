@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { IoMdMailOpen } from "react-icons/io";
 import { motion } from "framer-motion";
-import type { Options } from "canvas-confetti";
+import confetti, { type Options } from "canvas-confetti";
 
 interface IntroPageProps {
   onOpen: () => void;
@@ -13,7 +13,6 @@ interface IntroPageProps {
 export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
   const [isUnlocked, setIsUnlocked] = useState(false);
 
-  // fungsi scroll custom biar bisa atur speed
   const smoothScrollTo = (targetY: number, duration = 2000) => {
     const startY = window.scrollY;
     const diff = targetY - startY;
@@ -35,15 +34,9 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
   };
 
   const handleOpen = () => {
-    import("canvas-confetti").then((confettiModule) => {
-      const confetti = confettiModule as unknown as (
-        opts: import("canvas-confetti").Options
-      ) => void;
-
-      const fireConfetti = (
-        particleRatio: number,
-        opts: import("canvas-confetti").Options
-      ) => {
+    // jalankan confetti hanya di client
+    if (typeof window !== "undefined") {
+      const fireConfetti = (particleRatio: number, opts: Options) => {
         confetti({
           ...opts,
           particleCount: Math.floor(200 * particleRatio),
@@ -59,7 +52,7 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
       setTimeout(() => fireConfetti(0.2, { angle: 90 }), 200);
       setTimeout(() => fireConfetti(0.3, { angle: 60 }), 400);
       setTimeout(() => fireConfetti(0.3, { angle: 120 }), 600);
-    });
+    }
 
     setTimeout(() => {
       setIsUnlocked(true);
