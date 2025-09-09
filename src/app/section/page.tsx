@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import IntroPage from "./intro-page";
+import { useEffect, useRef, useState } from "react";
 import FirstPage from "./first-page";
+import IntroPage from "./intro-page";
 import DatePage from "./date-page";
 import Gallery from "./gallery";
 import CommentSection from "./comment";
@@ -15,7 +15,8 @@ import { FaMusic, FaPause } from "react-icons/fa";
 
 export default function SectionPage() {
   const searchParams = useSearchParams();
-  const guestName = searchParams.get("to") ?? "Tamu Undangan";
+  const rawTo = searchParams.get("to");
+  const guestName = rawTo ? decodeURIComponent(rawTo) : "Tamu Undangan";
 
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -46,7 +47,9 @@ export default function SectionPage() {
   return (
     <div className="max-h-auto w-full bg-secondary text-gray-800 overflow-hidden">
       <audio ref={audioRef} src="/assets/music/music.mp3" loop />
+
       <IntroPage onOpen={() => setIsUnlocked(true)} guestName={guestName} />
+
       <FirstPage />
       <DatePage />
       <Gallery />
