@@ -109,11 +109,18 @@ export default function FirstPage({ triggerConfetti }: FirstPageProps) {
 
       {/* Ayat */}
       <div className="max-h-auto bg-primary text-white pb-14 -mt-1 flex flex-col items-center z-40">
-        <i className="fa-regular fa-heart fa-3x py-12"></i>
-        <h2 className="text-4xl mb-4 font-Chalisa md:text-6xl">
+        <h2
+          data-aos="fade-up"
+          data-aos-delay={10}
+          className="text-4xl mb-4 font-Chalisa md:text-6xl mt-14"
+        >
           Bissmillahirrohmanirrohim
         </h2>
-        <p className="font-Palatino px-4 text-center md:w-1/2 md:text-lg pb-10">
+        <p
+          data-aos="fade-up"
+          data-aos-delay={10}
+          className="font-Palatino px-6 text-center md:w-1/2 text-sm md:text-lg pb-10"
+        >
           {`"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan
   pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung
   dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa
@@ -152,6 +159,8 @@ export default function FirstPage({ triggerConfetti }: FirstPageProps) {
           ></path>
         </svg>
       </div>
+
+      <LoveStoryZigzag />
     </>
   );
 }
