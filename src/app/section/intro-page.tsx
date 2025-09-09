@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { IoMdMailOpen } from "react-icons/io";
 import { motion } from "framer-motion";
-import Confetti from "react-confetti";
+import confetti, { type Options } from "canvas-confetti";
 
 interface IntroPageProps {
   onOpen: () => void;
@@ -12,17 +12,6 @@ interface IntroPageProps {
 
 export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
   const [isUnlocked, setIsUnlocked] = useState(false);
-  const [showConfetti, setShowConfetti] = useState(false);
-  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
-
-  // Ambil ukuran window untuk confetti
-  useEffect(() => {
-    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    const handleResize = () =>
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const smoothScrollTo = (targetY: number, duration = 2000) => {
     const startY = window.scrollY;
@@ -33,24 +22,42 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
       if (!start) start = timestamp;
       const time = timestamp - start;
       const percent = Math.min(time / duration, 1);
+
       window.scrollTo(0, startY + diff * percent);
-      if (time < duration) requestAnimationFrame(step);
+
+      if (time < duration) {
+        requestAnimationFrame(step);
+      }
     }
 
     requestAnimationFrame(step);
   };
 
   const handleOpen = () => {
-    setShowConfetti(true);
+    // jalankan confetti hanya di client
+    if (typeof window !== "undefined") {
+      const fireConfetti = (particleRatio: number, opts: Options) => {
+        confetti({
+          ...opts,
+          particleCount: Math.floor(200 * particleRatio),
+          spread: 70,
+          startVelocity: 40,
+          origin: { y: 0.7 },
+          colors: ["#f1e8e0", "#8f7151", "#ffd300", "#fff0f5"],
+        });
+      };
 
-    // Matikan confetti setelah 3 detik
-    setTimeout(() => setShowConfetti(false), 3000);
+      fireConfetti(0.25, { angle: 60 });
+      fireConfetti(0.25, { angle: 120 });
+      setTimeout(() => fireConfetti(0.2, { angle: 90 }), 200);
+      setTimeout(() => fireConfetti(0.3, { angle: 60 }), 400);
+      setTimeout(() => fireConfetti(0.3, { angle: 120 }), 600);
+    }
 
     setTimeout(() => {
       setIsUnlocked(true);
       onOpen();
 
-      // Scroll halus ke firstPage
       const target = document.getElementById("firstPage");
       if (target) {
         const top = target.getBoundingClientRect().top + window.scrollY;
@@ -59,7 +66,6 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
     }, 100);
   };
 
-  // Disable scroll sebelum dibuka
   useEffect(() => {
     document.body.style.overflow = isUnlocked ? "auto" : "hidden";
   }, [isUnlocked]);
@@ -74,16 +80,6 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
       style={{ backgroundImage: "url('/assets/images/image-4.webp')" }}
     >
       <div className="absolute inset-0 bg-black/40 z-0" />
-
-      {showConfetti && (
-        <Confetti
-          width={windowSize.width}
-          height={windowSize.height}
-          recycle={false}
-          numberOfPieces={200}
-          gravity={0.4}
-        />
-      )}
 
       <motion.div
         initial={{ opacity: 0, y: 40 }}
