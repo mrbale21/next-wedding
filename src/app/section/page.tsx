@@ -1,7 +1,6 @@
-"use client"; // wajib supaya bisa pakai useSearchParams
+"use client";
 
-import { useEffect, useRef, useState, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import IntroPage from "./intro-page";
 import FirstPage from "./first-page";
 import DatePage from "./date-page";
@@ -11,10 +10,12 @@ import Gift from "./gits";
 import Footer from "./footer";
 import { FaMusic, FaPause } from "react-icons/fa";
 
-// Komponen utama yang menggunakan useSearchParams
-function SectionContent() {
-  const searchParams = useSearchParams();
-  const rawTo = searchParams.get("to");
+interface SectionPageProps {
+  searchParams: { to?: string };
+}
+
+export default function SectionPage({ searchParams }: SectionPageProps) {
+  const rawTo = searchParams?.to;
   const guestName = rawTo ? decodeURIComponent(rawTo) : "Tamu Undangan";
 
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -67,23 +68,5 @@ function SectionContent() {
         </button>
       )}
     </div>
-  );
-}
-
-// Komponen utama yang dibungkus dengan Suspense
-export default function SectionPage() {
-  return (
-    <Suspense
-      fallback={
-        <div className="w-full h-screen flex items-center justify-center bg-secondary">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-800 mx-auto"></div>
-            <p className="mt-4 text-gray-800">Loading...</p>
-          </div>
-        </div>
-      }
-    >
-      <SectionContent />
-    </Suspense>
   );
 }
