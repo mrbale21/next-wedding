@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { IoMdMailOpen } from "react-icons/io";
 import { motion } from "framer-motion";
-import confetti, { type Options } from "canvas-confetti";
 
 interface IntroPageProps {
   onOpen: () => void;
@@ -22,21 +21,20 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
       if (!start) start = timestamp;
       const time = timestamp - start;
       const percent = Math.min(time / duration, 1);
-
       window.scrollTo(0, startY + diff * percent);
-
-      if (time < duration) {
-        requestAnimationFrame(step);
-      }
+      if (time < duration) requestAnimationFrame(step);
     }
 
     requestAnimationFrame(step);
   };
 
-  const handleOpen = () => {
-    // jalankan confetti hanya di client
+  const handleOpen = async () => {
     if (typeof window !== "undefined") {
-      const fireConfetti = (particleRatio: number, opts: Options) => {
+      // dynamic import confetti hanya di client
+      const confettiModule = await import("canvas-confetti");
+      const confetti = confettiModule as unknown as (opts: any) => void;
+
+      const fireConfetti = (particleRatio: number, opts: any) => {
         confetti({
           ...opts,
           particleCount: Math.floor(200 * particleRatio),
