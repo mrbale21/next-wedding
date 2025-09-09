@@ -1,21 +1,19 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import IntroPage from "./intro-page";
 import FirstPage from "./first-page";
 import DatePage from "./date-page";
 import Gallery from "./gallery";
 import CommentSection from "./comment";
-import Gift from "./gits";
 import Footer from "./footer";
 import { FaMusic, FaPause } from "react-icons/fa";
+import Gift from "./gits";
 
-interface SectionPageProps {
-  searchParams: { to?: string };
-}
-
-export default function SectionPage({ searchParams }: SectionPageProps) {
-  const rawTo = searchParams?.to;
+export default function SectionPage() {
+  const searchParams = useSearchParams();
+  const rawTo = searchParams.get("to"); // ambil query param di client
   const guestName = rawTo ? decodeURIComponent(rawTo) : "Tamu Undangan";
 
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -43,11 +41,8 @@ export default function SectionPage({ searchParams }: SectionPageProps) {
   return (
     <div className="w-full bg-secondary text-gray-800 overflow-hidden">
       <audio ref={audioRef} src="/assets/music/music.mp3" loop />
-
       <IntroPage onOpen={() => setIsUnlocked(true)} guestName={guestName} />
-
       <FirstPage triggerConfetti={isUnlocked} />
-
       <DatePage />
       <Gallery />
       <Gift />

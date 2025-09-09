@@ -115,7 +115,7 @@ const Bride: React.FC = () => {
               rel="noopener noreferrer"
               data-aos="fade-left"
               data-aos-delay={40}
-              className="text-xs font-semibold p-1 px-2 text-center bg-neutral/90 hover:bg-primary/80 text-white rounded-sm flex items-center gap-1 mt-4 mb-16"
+              className="text-xs font-semibold p-1 px-2 text-center bg-neutral/90 hover:bg-primary/80 text-white rounded-sm flex items-center gap-1 my-4"
             >
               <FaInstagram />
               <span>@ninamrl29</span>

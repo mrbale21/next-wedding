@@ -22,19 +22,14 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
       if (!start) start = timestamp;
       const time = timestamp - start;
       const percent = Math.min(time / duration, 1);
-
       window.scrollTo(0, startY + diff * percent);
-
-      if (time < duration) {
-        requestAnimationFrame(step);
-      }
+      if (time < duration) requestAnimationFrame(step);
     }
 
     requestAnimationFrame(step);
   };
 
   const handleOpen = () => {
-    // jalankan confetti hanya di client
     if (typeof window !== "undefined") {
       const fireConfetti = (particleRatio: number, opts: Options) => {
         confetti({
@@ -46,7 +41,6 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
           colors: ["#f1e8e0", "#8f7151", "#ffd300", "#fff0f5"],
         });
       };
-
       fireConfetti(0.25, { angle: 60 });
       fireConfetti(0.25, { angle: 120 });
       setTimeout(() => fireConfetti(0.2, { angle: 90 }), 200);
@@ -90,15 +84,12 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
         <motion.h1 className="text-lg font-Prata mb-4 md:text-2xl mt-38">
           Save The Date
         </motion.h1>
-
         <motion.h2 className="text-6xl mb-6 font-Chalisa md:text-5xl">
           Ebot & Nina
         </motion.h2>
-
         <motion.p className="font-Garamond text-smd mb-6 md:text-lg">
           Kepada Yth. Bapak/Ibu/Saudara/i
         </motion.p>
-
         <motion.h1 className="text-xl font-Garamond font-semibold mb-8 text-accent md:text-2xl">
           {guestName}
         </motion.h1>
