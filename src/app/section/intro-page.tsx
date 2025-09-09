@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { IoMdMailOpen } from "react-icons/io";
 import { motion } from "framer-motion";
+import type { CreateTypes, Options } from "canvas-confetti";
 
 interface IntroPageProps {
   onOpen: () => void;
@@ -30,11 +31,10 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
 
   const handleOpen = async () => {
     if (typeof window !== "undefined") {
-      // dynamic import confetti hanya di client
       const confettiModule = await import("canvas-confetti");
-      const confetti = confettiModule as unknown as (opts: any) => void;
+      const confetti = confettiModule.default; // akses default export
 
-      const fireConfetti = (particleRatio: number, opts: any) => {
+      const fireConfetti = (particleRatio: number, opts: Options) => {
         confetti({
           ...opts,
           particleCount: Math.floor(200 * particleRatio),
