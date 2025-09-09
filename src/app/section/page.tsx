@@ -1,8 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import IntroPage from "./intro-page";
+import { useState, useRef, useEffect, Suspense } from "react";
 import FirstPage from "./first-page";
 import DatePage from "./date-page";
 import Gallery from "./gallery";
@@ -10,12 +8,9 @@ import CommentSection from "./comment";
 import Footer from "./footer";
 import { FaMusic, FaPause } from "react-icons/fa";
 import Gift from "./gits";
+import SectionClient from "./section-client";
 
 export default function SectionPage() {
-  const searchParams = useSearchParams();
-  const rawTo = searchParams.get("to");
-  const guestName = rawTo ? decodeURIComponent(rawTo) : "Tamu Undangan";
-
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -41,7 +36,12 @@ export default function SectionPage() {
   return (
     <div className="w-full bg-secondary text-gray-800 overflow-hidden">
       <audio ref={audioRef} src="/assets/music/music.mp3" loop />
-      <IntroPage onOpen={() => setIsUnlocked(true)} guestName={guestName} />
+
+      {/* SectionClient yang aman memanggil useSearchParams() */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <SectionClient />
+      </Suspense>
+
       <FirstPage triggerConfetti={isUnlocked} />
       <DatePage />
       <Gallery />
