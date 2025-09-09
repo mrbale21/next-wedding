@@ -37,11 +37,11 @@ function GalleryImage({
 export default function Gallery() {
   // Kumpulan foto yg boleh masuk popup (image-...)
   const imagePhotos = [
-    "/assets/images/image-1.jpg",
-    "/assets/images/image-2.jpg",
-    "/assets/images/image-3.jpg",
-    "/assets/images/image-4.jpg",
-    "/assets/images/image-5.jpg",
+    "/assets/images/image-1.webp",
+    "/assets/images/image-2.webp",
+    "/assets/images/image-3.webp",
+    "/assets/images/image-4.webp",
+    "/assets/images/image-5.webp",
   ];
 
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
@@ -80,7 +80,7 @@ export default function Gallery() {
 
       <div className="grid grid-cols-3 p-4 gap-1">
         <GalleryImage
-          src="/assets/images/image-1.jpg"
+          src="/assets/images/image-1.webp"
           alt="image"
           onClick={() => openPopup(0)}
         />
@@ -91,7 +91,7 @@ export default function Gallery() {
           className="h-full flex flex-col justify-between gap-1"
         >
           <GalleryImage
-            src="/assets/images/image-2.jpg"
+            src="/assets/images/image-2.webp"
             alt="image"
             onClick={() => openPopup(1)}
           />
@@ -99,7 +99,7 @@ export default function Gallery() {
         </div>
 
         <GalleryImage
-          src="/assets/images/image-3.jpg"
+          src="/assets/images/image-3.webp"
           alt="image"
           onClick={() => openPopup(2)}
         />
@@ -110,7 +110,7 @@ export default function Gallery() {
           className="flex flex-col justify-between gap-1"
         >
           <GalleryImage
-            src="/assets/images/image-2.jpg"
+            src="/assets/images/image-2.webp"
             alt="image"
             onClick={() => openPopup(1)}
           />
@@ -118,7 +118,7 @@ export default function Gallery() {
         </div>
 
         <GalleryImage
-          src="/assets/images/image-4.jpg"
+          src="/assets/images/image-4.webp"
           alt="image"
           onClick={() => openPopup(3)}
         />
@@ -146,7 +146,7 @@ export default function Gallery() {
             Ebot & Nina
           </p>
           <GalleryImage
-            src="/assets/images/image-1.jpg"
+            src="/assets/images/image-1.webp"
             alt="image"
             onClick={() => openPopup(0)}
           />
@@ -154,7 +154,7 @@ export default function Gallery() {
 
         <div data-aos="fade-up" data-aos-delay={10} className="col-span-2">
           <GalleryImage
-            src="/assets/images/image-5.jpg"
+            src="/assets/images/image-5.webp"
             alt="image"
             onClick={() => openPopup(4)}
           />

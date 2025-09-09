@@ -13,7 +13,7 @@ export default function FirstPage() {
         data-aos="fade-up"
         data-aos-delay={10}
         className="parallax relative flex flex-col justify-end items-center text-center h-[450px] md:h-[600px] lg:h-[700px] text-white  overflow-hidden bg-cover bg-center z-10"
-        style={{ backgroundImage: "url('/assets/images/image-2.jpg')" }}
+        style={{ backgroundImage: "url('/assets/images/image-2.webp')" }}
       >
         {/* Overlay gradient */}
         <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-b from-transparent to-primary"></div>
@@ -75,13 +75,13 @@ export default function FirstPage() {
         <p
           data-aos="zoom-out"
           data-aos-delay={30}
-          className="font-Palatino px-4 text-center md:w-1/2 md:text-lg"
+          className="font-Palatino text-sm px-4 text-center md:w-1/2 md:text-lg"
         >
-          " Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan
+          &quot; Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan
           pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung
           dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa
           kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat
-          tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. "
+          tanda-tanda (kebesaran Allah) bagi kaum yang berpikir. &quot;
           <br />
           <br />
           (Qs. Ar-Rum Ayat 21)

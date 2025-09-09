@@ -63,7 +63,7 @@ export default function IntroPage({ onOpen }: IntroPageProps) {
       data-aos-delay={150}
       className="h-screen text-white flex flex-col justify-end pb-20 items-center text-center relative bg-cover bg-center"
       style={{
-        backgroundImage: "url('/assets/images/image-4.jpg')",
+        backgroundImage: "url('/assets/images/image-4.webp')",
       }}
     >
       <div className="absolute inset-0 bg-black/40 z-0"></div>

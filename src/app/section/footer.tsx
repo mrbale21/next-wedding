@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
       <div className="relative w-full h-[520px] flex items-end justify-center">
         {/* Background Image dengan Next.js Image */}
         <img
-          src="/assets/images/image-5.jpg"
+          src="/assets/images/image-5.webp"
           alt="Background Footer"
           className="absolute inset-0 object-cover w-full h-full"
         />

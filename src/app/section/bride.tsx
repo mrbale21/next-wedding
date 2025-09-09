@@ -44,7 +44,7 @@ const Bride: React.FC = () => {
             className="relative h-[230px] w-[200px] flex justify-start items-end rounded-tr-[70px] rounded-br-[70px] overflow-hidden"
           >
             <img
-              src={"/assets/images/image-4.jpg"}
+              src={"/assets/images/image-4.webp"}
               alt="Mempelai Pria"
               className="object-cover object-center h-[200px] w-[350px] bg-contain bg-top flex justify-start items-end rounded-tr-[70px] rounded-br-[70px]"
             />
@@ -84,7 +84,7 @@ const Bride: React.FC = () => {
             className="relative h-[230px] w-[200px] flex items-end rounded-tl-[70px] rounded-bl-[70px] overflow-hidden"
           >
             <img
-              src={"/assets/images/image-1.jpg"}
+              src={"/assets/images/image-1.webp"}
               alt="Mempelai Wanita"
               className="object-cover object-center h-[200px] w-[350px] flex items-end rounded-tl-[70px] rounded-bl-[70px]"
             />

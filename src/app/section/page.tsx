@@ -2,13 +2,10 @@
 import { useEffect, useRef, useState } from "react";
 import FirstPage from "./first-page";
 import IntroPage from "./intro-page";
-import GroomPage from "./groom-page";
 import DatePage from "./date-page";
 import Gallery from "./gallery";
-import WishPage from "./wish/wishPage";
 import CommentSection from "./comment";
 import Gift from "./gits";
-import LoveStory from "./love-story";
 import Footer from "./footer";
 import "aos/dist/aos.css";
 import AOS from "aos";

@@ -11,7 +11,7 @@ export default function DatePage() {
       time: "08.00 WIB",
       location: "Kediaman Mempelai Wanita",
       icon: "/assets/images/ring.png",
-      bg: "/assets/images/image-1.jpg",
+      bg: "/assets/images/image-1.webp",
       href: "https://maps.app.goo.gl/pKS5VhPyGiw2fVZG7?g_st=ipc",
     },
     {
@@ -20,7 +20,7 @@ export default function DatePage() {
       time: "10.00 WIB",
       location: "Kediaman Mempelai Pria",
       icon: "/assets/images/ring.png",
-      bg: "/assets/images/image-5.jpg",
+      bg: "/assets/images/image-5.webp",
       href: "https://maps.app.goo.gl/1hQd6FtzuZthdoky7?g_st=ipc",
     },
   ];
@@ -28,7 +28,7 @@ export default function DatePage() {
   return (
     <div
       className="relative flex flex-col items-center text-center overflow-hidden bg-cover bg-center bg-fixed -mt-1"
-      style={{ backgroundImage: "url('/assets/images/image-3.jpg')" }}
+      style={{ backgroundImage: "url('/assets/images/image-3.webp')" }}
     >
       {/* Overlay gradient */}
       <div className="absolute inset-0 bg-black/70"></div>
