@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation"; // <-- ambil query param di client
+import { useSearchParams } from "next/navigation";
 import FirstPage from "./first-page";
 import IntroPage from "./intro-page";
 import DatePage from "./date-page";
@@ -13,16 +13,9 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import { FaMusic, FaPause } from "react-icons/fa";
 
-interface SectionPageProps {
-  guestName: string;
-}
-
-export default function SectionPage({ guestName }: SectionPageProps) {
+export default function SectionPage() {
   const searchParams = useSearchParams();
-  const guestFromQuery = searchParams.get("to");
-  const displayName = guestFromQuery
-    ? decodeURIComponent(guestFromQuery)
-    : guestName;
+  const guestName = searchParams.get("to") ?? "Tamu Undangan";
 
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -55,7 +48,7 @@ export default function SectionPage({ guestName }: SectionPageProps) {
       <audio ref={audioRef} src="/assets/music/music.mp3" loop />
 
       <Suspense fallback={<p>Loading...</p>}>
-        <IntroPage onOpen={() => setIsUnlocked(true)} guestName={displayName} />
+        <IntroPage onOpen={() => setIsUnlocked(true)} guestName={guestName} />
       </Suspense>
 
       <FirstPage />
