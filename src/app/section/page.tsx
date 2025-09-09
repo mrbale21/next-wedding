@@ -1,9 +1,9 @@
 "use client";
 
-import { Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import FirstPage from "./first-page";
 import IntroPage from "./intro-page";
+import FirstPage from "./first-page";
 import DatePage from "./date-page";
 import Gallery from "./gallery";
 import CommentSection from "./comment";
@@ -46,11 +46,7 @@ export default function SectionPage() {
   return (
     <div className="max-h-auto w-full bg-secondary text-gray-800 overflow-hidden">
       <audio ref={audioRef} src="/assets/music/music.mp3" loop />
-
-      <Suspense fallback={<p>Loading...</p>}>
-        <IntroPage onOpen={() => setIsUnlocked(true)} guestName={guestName} />
-      </Suspense>
-
+      <IntroPage onOpen={() => setIsUnlocked(true)} guestName={guestName} />
       <FirstPage />
       <DatePage />
       <Gallery />

@@ -1,5 +1,4 @@
-// app/page.tsx
-
+"use client";
 import SectionPage from "./section/page";
 
 export default function Page() {
