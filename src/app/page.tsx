@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
+// SectionPage hanya dijalankan di client, SSR dimatikan
 const SectionPage = dynamic(() => import("./section/page"), { ssr: false });
 
 export default function Page() {
