@@ -58,7 +58,7 @@ const SpecialDay: React.FC<SpecialDayProps> = ({ targetDate }) => {
           data-aos="zoom-out"
           className="text-center w-2/4 h-0.5 my-4 bg-neutral/70"
         />
-        <div className="flex gap-15 mt-3 items-center text-secondary font-Prata">
+        <div className="flex gap-10 mt-3 items-center text-secondary font-Prata">
           <div
             className="flex flex-col justify-center items-center "
             data-aos="fade-right"

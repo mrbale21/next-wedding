@@ -1,4 +1,6 @@
+// app/section-page.tsx
 "use client";
+
 import { Suspense, useEffect, useRef, useState } from "react";
 import FirstPage from "./first-page";
 import IntroPage from "./intro-page";
@@ -11,16 +13,19 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import { FaMusic, FaPause } from "react-icons/fa";
 
-export default function SectionPage() {
-  const [isUnlocked, setIsUnlocked] = useState(false); // trigger Buka Undangan
-  const [isPlaying, setIsPlaying] = useState(false); // status musik
+interface SectionPageProps {
+  guestName: string;
+}
+
+export default function SectionPage({ guestName }: SectionPageProps) {
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
   }, []);
 
-  // start musik saat unlock
   useEffect(() => {
     if (isUnlocked && audioRef.current) {
       audioRef.current.play().catch(() => console.log("Autoplay failed"));
@@ -41,13 +46,13 @@ export default function SectionPage() {
 
   return (
     <div className="max-h-auto w-full bg-secondary text-gray-800 overflow-hidden">
-      {/* Render audio hidden */}
       <audio ref={audioRef} src="/assets/music/music.mp3" loop />
 
-      {/* IntroPage dikasih trigger unlock */}
       <Suspense fallback={<p>Loading...</p>}>
-        <IntroPage onOpen={() => {}} />
+        {/* Pass guestName dari server ke IntroPage */}
+        <IntroPage onOpen={() => setIsUnlocked(true)} guestName={guestName} />
       </Suspense>
+
       <FirstPage />
       <DatePage />
       <Gallery />
@@ -55,7 +60,6 @@ export default function SectionPage() {
       <CommentSection />
       <Footer />
 
-      {/* Tombol musik fixed */}
       {isUnlocked && (
         <button
           onClick={toggleMusic}
@@ -65,7 +69,7 @@ export default function SectionPage() {
           {isPlaying ? (
             <FaPause className="text-lg animate-spin-slow" />
           ) : (
-            <FaMusic className="text-lg " />
+            <FaMusic className="text-lg" />
           )}
         </button>
       )}

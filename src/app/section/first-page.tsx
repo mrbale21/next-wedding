@@ -10,8 +10,6 @@ export default function FirstPage() {
     <>
       <div
         id="firstPage"
-        data-aos="fade-up"
-        data-aos-delay={10}
         className="parallax relative flex flex-col justify-end items-center text-center h-[450px] md:h-[600px] lg:h-[700px] text-white  overflow-hidden bg-cover bg-center z-10"
         style={{ backgroundImage: "url('/assets/images/image-2.webp')" }}
       >

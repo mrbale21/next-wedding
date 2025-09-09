@@ -141,7 +141,7 @@ export default function Gallery() {
           <p
             data-aos="fade-right"
             data-aos-delay={10}
-            className="text-center text-neutral font-Chalisa text-2xl "
+            className="text-center text-neutral font-Chalisa text-xl "
           >
             Ebot & Nina
           </p>
