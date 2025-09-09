@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { FaMusic, FaPause } from "react-icons/fa";
 import { IoMdMailOpen } from "react-icons/io";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
