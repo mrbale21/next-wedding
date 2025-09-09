@@ -13,7 +13,7 @@ import Gift from "./gits";
 
 export default function SectionPage() {
   const searchParams = useSearchParams();
-  const rawTo = searchParams.get("to"); // ambil query param di client
+  const rawTo = searchParams.get("to");
   const guestName = rawTo ? decodeURIComponent(rawTo) : "Tamu Undangan";
 
   const [isUnlocked, setIsUnlocked] = useState(false);
