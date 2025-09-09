@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { IoMdMailOpen } from "react-icons/io";
 import { motion } from "framer-motion";
-import { Options } from "canvas-confetti";
+import type { Options } from "canvas-confetti";
 
 interface IntroPageProps {
   onOpen: () => void;
@@ -35,9 +35,16 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
   };
 
   const handleOpen = () => {
-    import("canvas-confetti").then((confetti) => {
-      const fireConfetti = (particleRatio: number, opts: Options) => {
-        confetti.default({
+    import("canvas-confetti").then((confettiModule) => {
+      const confetti = confettiModule as unknown as (
+        opts: import("canvas-confetti").Options
+      ) => void;
+
+      const fireConfetti = (
+        particleRatio: number,
+        opts: import("canvas-confetti").Options
+      ) => {
+        confetti({
           ...opts,
           particleCount: Math.floor(200 * particleRatio),
           spread: 70,
@@ -54,7 +61,6 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
       setTimeout(() => fireConfetti(0.3, { angle: 120 }), 600);
     });
 
-    // kasih jeda confetti dulu
     setTimeout(() => {
       setIsUnlocked(true);
       onOpen();
@@ -62,7 +68,7 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
       const target = document.getElementById("firstPage");
       if (target) {
         const top = target.getBoundingClientRect().top + window.scrollY;
-        smoothScrollTo(top, 2500); // ⏳ scroll pelan 2.5 detik
+        smoothScrollTo(top, 2500);
       }
     }, 100);
   };
