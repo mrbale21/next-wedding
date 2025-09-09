@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { IoMdMailOpen } from "react-icons/io";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface IntroPageProps {
   onOpen: () => void;
@@ -12,7 +13,6 @@ interface IntroPageProps {
 export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
   const [isUnlocked, setIsUnlocked] = useState(false);
 
-  // fungsi scroll custom biar bisa atur speed
   const smoothScrollTo = (targetY: number, duration = 2000) => {
     const startY = window.scrollY;
     const diff = targetY - startY;
@@ -22,12 +22,8 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
       if (!start) start = timestamp;
       const time = timestamp - start;
       const percent = Math.min(time / duration, 1);
-
       window.scrollTo(0, startY + diff * percent);
-
-      if (time < duration) {
-        requestAnimationFrame(step);
-      }
+      if (time < duration) requestAnimationFrame(step);
     }
 
     requestAnimationFrame(step);
@@ -45,7 +41,6 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
           colors: ["#f1e8e0", "#8f7151", "#ffd300", "#fff0f5"],
         });
       };
-
       fireConfetti(0.25, { angle: 60 });
       fireConfetti(0.25, { angle: 120 });
       setTimeout(() => fireConfetti(0.2, { angle: 90 }), 200);
@@ -53,7 +48,6 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
       setTimeout(() => fireConfetti(0.3, { angle: 120 }), 600);
     });
 
-    // kasih jeda confetti dulu
     setTimeout(() => {
       setIsUnlocked(true);
       onOpen();
@@ -61,7 +55,7 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
       const target = document.getElementById("firstPage");
       if (target) {
         const top = target.getBoundingClientRect().top + window.scrollY;
-        smoothScrollTo(top, 2500); // ⏳ scroll pelan 2.5 detik
+        smoothScrollTo(top, 2500);
       }
     }, 100);
   };
@@ -75,12 +69,9 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
       id="intro"
       data-aos="fade-down"
       data-aos-delay={150}
-      suppressHydrationWarning
       className="h-screen text-white flex flex-col justify-center pb-20 items-center text-center relative bg-cover bg-center"
-      style={{ backgroundImage: "url('/assets/images/image-4.webp')" }}
     >
       <div className="absolute inset-0 bg-black/40 z-0" />
-
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -90,19 +81,15 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
         <motion.h1 className="text-lg font-Prata mb-4 md:text-2xl mt-38">
           Save The Date
         </motion.h1>
-
         <motion.h2 className="text-6xl mb-6 font-Chalisa md:text-5xl">
           Ebot & Nina
         </motion.h2>
-
         <motion.p className="font-Garamond text-smd mb-6 md:text-lg">
           Kepada Yth. Bapak/Ibu/Saudara/i
         </motion.p>
-
         <motion.h1 className="text-xl font-Garamond font-semibold mb-8 text-accent md:text-2xl">
           {guestName}
         </motion.h1>
-
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
