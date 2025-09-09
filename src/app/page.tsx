@@ -1,15 +1,8 @@
-"use client";
+export const dynamic = "force-dynamic"; // Next.js 15 App Router
 
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
-
-// SectionPage dijalankan hanya di client, SSR dimatikan
-const SectionPage = dynamic(() => import("./section/page"), { ssr: false });
+("use client");
+import SectionPage from "./section/page";
 
 export default function Page() {
-  return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <SectionPage />
-    </Suspense>
-  );
+  return <SectionPage />;
 }
