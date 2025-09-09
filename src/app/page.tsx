@@ -1,8 +1,11 @@
-export const dynamic = "force-dynamic"; // Next.js 15 App Router
+export const dynamic = "force-dynamic";
 
-("use client");
 import SectionPage from "./section/page";
 
-export default function Page() {
-  return <SectionPage />;
+export default function Page({
+  searchParams,
+}: {
+  searchParams: { to?: string };
+}) {
+  return <SectionPage searchParams={searchParams} />;
 }
