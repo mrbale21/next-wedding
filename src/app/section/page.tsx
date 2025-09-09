@@ -1,11 +1,7 @@
-"use client";
+"use client"; // wajib supaya bisa pakai useSearchParams
 
-import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import AOS from "aos";
-import "aos/dist/aos.css";
-
+import { useSearchParams } from "next/navigation";
 import IntroPage from "./intro-page";
 import FirstPage from "./first-page";
 import DatePage from "./date-page";
@@ -13,7 +9,6 @@ import Gallery from "./gallery";
 import CommentSection from "./comment";
 import Gift from "./gits";
 import Footer from "./footer";
-
 import { FaMusic, FaPause } from "react-icons/fa";
 
 export default function SectionPage() {
@@ -24,10 +19,6 @@ export default function SectionPage() {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    AOS.init({ duration: 800, once: true });
-  }, []);
 
   useEffect(() => {
     if (isUnlocked && audioRef.current) {
@@ -53,7 +44,8 @@ export default function SectionPage() {
 
       <IntroPage onOpen={() => setIsUnlocked(true)} guestName={guestName} />
 
-      <FirstPage />
+      <FirstPage triggerConfetti={isUnlocked} />
+
       <DatePage />
       <Gallery />
       <Gift />
