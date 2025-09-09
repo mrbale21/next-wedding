@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import FirstPage from "./first-page";
 import IntroPage from "./intro-page";
 import DatePage from "./date-page";
@@ -45,8 +45,9 @@ export default function SectionPage() {
       <audio ref={audioRef} src="/assets/music/music.mp3" loop />
 
       {/* IntroPage dikasih trigger unlock */}
-      <IntroPage onOpen={() => setIsUnlocked(true)} />
-
+      <Suspense fallback={<p>Loading...</p>}>
+        <IntroPage onOpen={() => {}} />
+      </Suspense>
       <FirstPage />
       <DatePage />
       <Gallery />
