@@ -3,13 +3,16 @@
 import { useEffect, useState } from "react";
 import { IoMdMailOpen } from "react-icons/io";
 import { motion } from "framer-motion";
-import Image from "next/image";
-import type { Options } from "canvas-confetti";
 
 interface IntroPageProps {
   onOpen: () => void;
   guestName: string;
 }
+
+type ConfettiOptions = {
+  angle?: number;
+  [key: string]: any;
+};
 
 export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -32,7 +35,7 @@ export default function IntroPage({ onOpen, guestName }: IntroPageProps) {
 
   const handleOpen = () => {
     import("canvas-confetti").then((confetti) => {
-      const fireConfetti = (particleRatio: number, opts: Options) => {
+      const fireConfetti = (particleRatio: number, opts: ConfettiOptions) => {
         confetti.default({
           ...opts,
           particleCount: Math.floor(200 * particleRatio),
