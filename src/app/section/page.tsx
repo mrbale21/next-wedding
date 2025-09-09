@@ -1,7 +1,7 @@
-// app/section-page.tsx
 "use client";
 
 import { Suspense, useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation"; // <-- ambil query param di client
 import FirstPage from "./first-page";
 import IntroPage from "./intro-page";
 import DatePage from "./date-page";
@@ -18,6 +18,12 @@ interface SectionPageProps {
 }
 
 export default function SectionPage({ guestName }: SectionPageProps) {
+  const searchParams = useSearchParams();
+  const guestFromQuery = searchParams.get("to");
+  const displayName = guestFromQuery
+    ? decodeURIComponent(guestFromQuery)
+    : guestName;
+
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -49,8 +55,7 @@ export default function SectionPage({ guestName }: SectionPageProps) {
       <audio ref={audioRef} src="/assets/music/music.mp3" loop />
 
       <Suspense fallback={<p>Loading...</p>}>
-        {/* Pass guestName dari server ke IntroPage */}
-        <IntroPage onOpen={() => setIsUnlocked(true)} guestName={guestName} />
+        <IntroPage onOpen={() => setIsUnlocked(true)} guestName={displayName} />
       </Suspense>
 
       <FirstPage />
