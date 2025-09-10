@@ -22,7 +22,10 @@ const stories = [
 
 const LoveStoryZigzag: React.FC = () => {
   return (
-    <div className="relative flex flex-col items-center text-center overflow-hidden bg-cover bg-center z-0">
+    <div
+      className="relative -mt-40 flex flex-col items-center text-center overflow-hidden bg-cover bg-center bg-fixed z-0"
+      style={{ backgroundImage: "url('/assets/images/image-3.webp')" }}
+    >
       {/* Overlay gradient */}
       <div className="absolute inset-0 bg-black/70"></div>
       <h1

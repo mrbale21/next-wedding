@@ -9,7 +9,6 @@ import Footer from "./footer";
 import { FaMusic, FaPause } from "react-icons/fa";
 import Gift from "./gits";
 import SectionClient from "./section-client";
-import LoveStoryZigzag from "./love-story";
 
 export default function SectionPage() {
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -44,20 +43,7 @@ export default function SectionPage() {
       </Suspense>
 
       <FirstPage triggerConfetti={isUnlocked} />
-      <div>
-        {/* Background tetap */}
-        <div
-          className="fixed top-0 left-0 w-full h-full bg-cover bg-center -z-50"
-          style={{ backgroundImage: "url('/assets/images/image-3.webp')" }}
-        ></div>
-
-        {/* Konten */}
-        <div className="relative z-10">
-          <LoveStoryZigzag />
-          <DatePage />
-        </div>
-      </div>
-
+      <DatePage />
       <Gallery />
       <Gift />
       <CommentSection />
