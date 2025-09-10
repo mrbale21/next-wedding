@@ -26,10 +26,7 @@ export default function DatePage() {
   ];
 
   return (
-    <div
-      className="relative flex flex-col items-center text-center overflow-hidden bg-cover bg-center bg-fixed -mt-1"
-      style={{ backgroundImage: "url('/assets/images/image-3.webp')" }}
-    >
+    <div className="relative flex flex-col items-center text-center overflow-hidden bg-cover bg-center z-0">
       {/* Overlay gradient */}
       <div className="absolute inset-0 bg-black/70"></div>
 

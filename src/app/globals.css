@@ -94,3 +94,9 @@ body {
   animation: spin-slow 7s linear infinite;
   -webkit-animation: spin-slow 7s linear infinite;
 }
+
+@supports (-webkit-overflow-scrolling: touch) {
+  .bg-fixed-ios {
+    background-attachment: scroll; /* fallback iOS */
+  }
+}
