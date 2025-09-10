@@ -80,7 +80,7 @@ export default function Gallery() {
 
       <div className="grid grid-cols-3 p-4 gap-1">
         <GalleryImage
-          src="/assets/images/image-1.webp"
+          src="/assets/images/image-5.webp"
           alt="image"
           onClick={() => openPopup(0)}
         />
